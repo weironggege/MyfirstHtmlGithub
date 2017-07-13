@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3d倒影照片墙</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.box{
+			height: 100%;
+			overflow: hidden;
+		}
+		.box .pic{
+			height: 500px;
+			margin-top: 150px;
+			transform-style: preserve-3d;
+			position: relative;
+			perspective: 800px;
+		}
+		.box .pic img{
+			width: 300px;
+			position: absolute;
+			-webkit-box-reflect:below 0 
+			-webkit-linear-gradient(top, rgba(0, 0, 0, .1), rgba(0, 0, 0, .5));
+			transition: 1s;
+		}
+		.box .pic .front{
+			transform: rotateY(45deg) translateZ(-100px);
+
+		}
+		.box .pic .back{
+			transform: rotateY(-45deg) translateZ(-100px);
+		}
+		.box .pic .now{
+			transform: translateZ(100px);
+		}
+	</style>
+</head>
+<body>
+	<div class="box">
+		<div class="pic">
+			<img src="img1/psb1FAUOEHG.jpg" >
+			<img src="img1/psb3NOQDW2U.jpg" >
+			<img src="img1/psb9XNG8T0E.jpg" >
+			<img src="img1/psb3TS0IIP3.jpg" >
+			<img src="img1/psbDQJD5MX8.jpg" >
+			<img src="img1/psbEYIVHW7A.jpg" >
+			<img src="img1/psbMGMU0EKP.jpg" >
+			<img src="img1/psbJPRCAQIN.jpg" >
+			<img src="img1/psbLWWUNRBZ.jpg" >
+			<img src="img1/psbYDB8T44Y.jpg" >
+			<img src="img1/psbXY06Y8VB.jpg" >
+		</div>
+	</div>
+
+	<script type="text/javascript" src="jquery-1.10.2.min.js"></script>
+	<script type="text/javascript">
+		var imglen = $("img").length;
+
+		var lastindex = Math.floor(imglen/2);
+
+		var imgleft = [];
+
+		for(var i=0; i<imglen; i++){
+			if(i < lastindex){
+				$("img").eq(i).addClass("front");
+			}else if(i > lastindex){
+				$("img").eq(i).addClass("back");
+			}else{
+				$("img").eq(i).addClass("now");
+			}
+		}
+
+		function mid() {
+			var mindex = $(".now").index();
+			var owid = $(window).width();
+			$(".now").css("left", owid/2-150+"px");
+
+			for(var i=0; i<imglen; i++){
+				$('img').eq(i).css("left", owid/2-150-100*(mindex-i)+"px");
+				imgleft[i] = parseInt($('img').eq(i).css("left"));
+			};
+		};
+		mid();
+
+		$('img').click(function() {
+			var nowindex = $(this).index();
+
+			for(var i=0; i<imglen; i++){
+				imgleft[i] -= 100*(nowindex - lastindex);
+				$("img").eq(i).css("left", imgleft[i]);
+			}
+
+			for(var i=0; i<imglen; i++){
+				if(i < nowindex){
+					$("img").eq(i).removeClass().addClass("front");
+				}else if(i > nowindex){
+					$("img").eq(i).removeClass().addClass("back");
+				};
+			};
+			lastindex = nowindex;
+			$(this).removeClass().addClass("now").siblings().removeClass("now");
+		})
+	</script>
+</body>
+</html>

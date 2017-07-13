@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body {
+			margin: 50px;
+			background: #bbb;
+		}
+		ul li{
+			list-style: none;
+		}
+		a{
+			text-decoration: none;
+		}
+		#smallbox {
+			width: 700px;
+			padding: 20px;
+			overflow: hidden;
+			box-shadow: 2px 5px 1em #000;
+			border-radius: 5px;
+
+		}
+		#smallbox ul li img, #box ul li img{
+			width: 200px;
+			height: 100px;
+			border:1px solid #aaa;
+		}
+		#ulist li{
+			float: left;
+			margin-right: 10px;
+			margin-bottom: 15px;
+		}
+		#box{
+			min-height: 180px;
+			overflow: hidden;
+			text-align: center;
+			border: 2px dotted orange;
+			margin-top: 25px;
+			padding: 15px;
+		}
+		#slist li{
+			float: left;
+			margin: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div id="smallbox">
+		<ul id="ulist">
+			<li draggable="true" id="mk_01">
+				<p><a href="javascript:void(0);" draggable="false"><img draggable="false" src="https://img.alicdn.com/bao/uploaded/i1/TB1DkFaLVXXXXXwXFXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg"></a></p>
+				<h2>商品1</h2>
+				<p>109￥</p>
+			</li>
+			<li draggable="true" id="mk_02">
+				<p><a href="javascript:void(0)" draggable="false"><img draggable="false" src="https://gd1.alicdn.com/imgextra/i5/TB1salaRpXXXXccXXXXYXGcGpXX_M2.SS2"></a></p>
+				<h2>商品2</h2>
+				<p>59￥</p>
+			</li>
+			<li draggable="true" id="mk_03">
+				<p><a href="javascript:void(0);" draggable="false"><img draggable="false" src="https://gd4.alicdn.com/imgextra/i4/845071222/TB22bgDamvHfKJjSZFPXXbttpXa_!!845071222.jpg"></a></p>
+				<h2>商品3</h2>
+				<p>38￥</p>
+			</li>
+		</ul>
+	</div>
+	<!-- 目标盒子 购物车 -->
+
+	<div id="box">
+		<i>将商品拖到购物车进行结算</i>
+		<ul id="slist"></ul>
+	</div>
+	<!-- 商品总计区域 -->
+	<div style="margin-top: 30px;">总计:<span id="result">0</span></div>
+
+
+	<script type="text/javascript">
+		// 第一步：给li元素添加属性draggable="true"
+		// 第二步：给拖拽元素绑定dragstart事件
+		// 第三部：给目标元素绑定drop事件，监听拖放元素
+		// 第四部：考虑如何辨别你拖拽的是哪一个商品？使用一个数据缓存li元素
+		// 第五部：我们需要传递值，目标元素获取缓存的值
+		window.onload = function() {
+			var ulistdom = document.getElementById("ulist");
+			var lidom = ulistdom.children;
+			for(var i=0; i<lidom.length; i++){
+				lidom[i].addEventListener("dragstart", function(e) {
+					e.dataTransfer.setData("mk_good", e.target.id);
+				});
+			}
+
+			var bigbox = document.getElementById('box');
+			var slistdom = document.getElementById('slist');
+
+			bigbox.addEventListener("dragover", function(e) {
+				e.preventDefault();
+			});
+
+			bigbox.addEventListener("drop", function(e) {
+				var oid = e.dataTransfer.getData("mk_good");
+				var olidom = document.getElementById(oid);
+				var newprice = parseFloat(olidom.children[2].innerHTML);
+
+				var sgood = document.getElementById(oid + '_target');
+				if(!sgood) {
+					var slidom = document.createElement("li");
+					slidom.id = oid + "_target";
+					slidom.innerHTML = olidom.innerHTML;
+					slistdom.appendChild(slidom);
+				}else {
+					var pricedom = sgood.children[2];
+					var oldprice = parseFloat(pricedom.innerHTML);
+					pricedom.innerHTML = (newprice + oldprice) + "￥";
+				}
+
+				totalprice();
+			})
+		}
+
+		function totalprice() {
+			var bigbox = document.getElementById('box');
+
+			var slistdom = document.getElementById("slist");
+			var lidom = slistdom.children;
+			var tprice = 0;
+			for(var i=0; i<lidom.length; i++){
+				tprice += parseFloat(lidom[i].children[2].innerHTML);
+			}
+			document.getElementById('result').innerHTML = tprice + "￥";
+		}
+	</script>
+</body>
+</html>

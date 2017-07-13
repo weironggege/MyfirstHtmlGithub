@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>京东注册系统</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		a{
+			text-decoration: none;
+		}
+		ul{
+			list-style: none;
+		}
+		body{
+			font-family: "微软雅黑";
+		}
+		.main{
+			width: 100%;
+		}
+		#header {
+			height: 99px;
+			background: url("http://home.mengkedu.com/kugua/xinghe/images/header_hr.png");
+		}
+		.w1090 {
+			width: 1089px;
+			margin: 0 auto 0;
+		}
+		.h100 {
+			height: 90px;
+		}
+		#logo {
+			width: 143px;
+			height: 39px;
+			display: block;
+			float: left;
+			margin-top: 25px;
+			background: url("http://home.mengkedu.com/kugua/xinghe/images/logo.png") no-repeat;
+		}
+		.greet {
+			font-size: 22px;
+			float: left;
+			color: #333;
+			margin: 30px 0 0 28px;
+		}
+		.log_in {
+			float: right;
+			font-size: 14px;
+			margin-top: 49px;
+			color: #333;
+		}
+		.helis {
+			float: right;
+			color: #999;
+			font-size: 14px;
+			margin: 49px 5px 0 0;
+		}
+		/*content*/
+		.content {
+			margin-top: 44px;
+		}
+		.left_box {
+			width: 548px;
+			float: left;
+			margin-left: 77px;
+		}
+		.input_common {
+			width: 358px;
+			height: 47px;
+			border: 1px solid #ddd;
+			margin: 0 auto;
+			position: relative;
+			font-size: 13px;
+			overflow: hidden;
+		}
+		.input_common p{
+			padding: 14px 18px 0 18px;
+			color: #666;
+			height: 47px;
+			float: left;
+			display: block;
+		}
+		.input_common input{
+			width: 260px;
+			height: 47px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			text-indent: 19px;
+			border-style: none;
+			z-index: 3;
+			background: rgba(220, 220, 220, 0);
+		}
+		.input_hint {
+			position: absolute;
+			top: 13px;
+			color:#ccc;
+			left: 117px;
+			z-index: 2;
+		}
+		.hint_common {
+			width: 358px;
+			height: 29px;
+			margin: 0 auto;
+		}
+		.hint_common span{
+			display: none;
+		}
+		.phone_number p{
+			border-right: 1px solid #ddd;
+		}
+		.phone_number p a{
+			width: 16px;
+			height: 16px;
+			float: right;
+			background: url("http://home.mengkedu.com/kugua/xinghe/images/drop-down.png");
+		}
+		.verify_img {
+			width: 99px;
+			height: 41px;
+			position: absolute;
+			top: 3px;
+			right:2px;
+			z-index: 3;
+			background: url("http://home.mengkedu.com/kugua/xinghe/images/verify.png") no-repeat;
+		}
+		.get_verify {
+			width: 99px;
+			height: 42px;
+			position: absolute;
+			top:3px;
+			right: 2px;
+			background: #f2f2f2;
+			text-align: center;
+			line-height: 42px;
+			color: #333;
+			font-size: 12px;
+		}
+		.protocol {
+			width: 360px;
+			height: 51px;
+			margin: 5px auto 0;
+			font-size: 12px;
+		}
+		.procotol span{
+			color: #333;
+		}
+		.procotol a{
+			color: #38f;
+		}
+		.submit {
+			width: 360px;
+			height: 54px;
+			margin: 0 auto;
+		}
+		.submit input{
+			width: 360px;
+			height: 54px;
+			background: red;
+			border-style: none;
+			font-size: 14px;
+			color: #fff;
+		}
+		/*右边*/
+		.right_box{
+			width: 400px;
+			height: 545px;
+			float: left;
+			border: 1px solid #e6e6e6;
+		}
+		.small_box {
+			width: 160px;
+			height: 135px;
+			margin: 0 auto;
+		}
+		.right_top {
+			border-bottom: 1px solid #ddd;
+		}
+		.right_common {
+			width: 145px;
+			height: 74px;
+			font-size: 12px;
+			position: relative;
+		}
+		.right_common a{
+			width: 100%;
+			height: 100%;
+			display: block;
+			color: #666;
+		}
+		.right_common a img{
+			margin-top: 18px;
+		}
+		.right_common a span{
+			position: absolute;
+		}
+		.right_top a span{
+			top: 25px;
+			right: 24px;
+		}
+		.right_common a:hover span{
+			font-weight: 700;
+			color: #000;
+		}
+		.right_bottom a span{
+			width: 100px;
+			top: 27px;
+			right: 0;
+		}
+		.right_bottom a img{
+			margin-top: 33px;
+		}
+		.clear:after{
+			content: "";
+			display: block;
+			clear: both;
+		}
+		/*尾部*/
+		#footer {
+			width: 100%;
+			height: 104px;
+			margin-top: 54px;
+		}
+		.h104 {
+			height: 104px;
+			border-top: 1px solid #e6e6e6;
+		}
+		.h104 ul{
+			width: 795px;
+			margin: 30px auto 0;
+		}
+		.h104 ul li{
+			float: left;
+			margin: 0 5px;
+			font-size: 12px;
+		}
+		.h104 ul li a{
+			color: #999;
+		}
+		.vertical {
+			width: 1px;
+			height: 13px;
+			background: #b299b2;
+			display: block;
+			margin-top: 2px;
+		}
+		.h104 > span{
+			font-size: 12px;
+			display: block;
+			width: 257px;
+			margin: 60px auto 0;
+			color: #999;
+		}
+	</style>
+</head>
+<body>
+	<!-- 导航条 -->
+	<div id="header" class="main">
+		<div class="w1090 h100">
+			<a id="logo" href="#"></a>
+			<p class="greet">欢迎注册</p>
+			<a href="#" class="log_in">请登录</a>
+			<p class="helis">已有账号？</p>
+		</div>
+	</div>
+	<!-- 主内容 -->
+	<div id="content" class="main clear">
+		<div class="w1090 content">
+		<!-- 左边 -->
+			<div class="left_box">
+				<form action="#">
+					<div class="user">
+						<div class="userName input_common">
+							<p>用&nbsp;&nbsp;&nbsp;户&nbsp;&nbsp;&nbsp;名</p>
+							<input type="text">
+							<span class="input_hint">您的账户和登录名</span>
+						</div>
+						<div class="userName_hint hint_common">
+							<span>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</span>
+							<span>长度只能在4—20个字符之间</span>
+							<span>支持中文，字母，数字，“-”“_”的组合，4-20个字符</span>
+						</div>
+					</div>
+					<div class="pass">
+						<div class="passWord input_common">
+							<p>设 置 密 码</p>
+							<input type="text">
+							<span class="input_hint">建议至少使用两种字符组合</span>
+						</div>
+						<div class="userName_hint hint_common">
+							<span>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</span>
+							<span>长度只能在4—20个字符之间</span>
+							<span>支持中文，字母，数字，“-”“_”的组合，4-20个字符</span>
+						</div>
+					</div>
+					<div class="user">
+						<div class="userName input_common">
+							<p>确 认 密 码</p>
+							<input type="text">
+							<span class="input_hint">请再次输入密码</span>
+						</div>
+						<div class="userName_hint hint_common">
+							<span>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</span>
+							<span>长度只能在4—20个字符之间</span>
+							<span>支持中文，字母，数字，“-”“_”的组合，4-20个字符</span>
+						</div>
+					</div>
+					<div class="phnoe">
+						<div class="phone_number input_common">
+							<p>中国 0086<a href="#"></a></p>
+							<input type="text">
+							<span class="input_hint">建议使用常用手机</span>
+						</div>
+						<div class="userName_hint hint_common">
+							<span>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</span>
+							<span>长度只能在4—20个字符之间</span>
+							<span>支持中文，字母，数字，“-”“_”的组合，4-20个字符</span>
+						</div>
+					</div>
+					<div class="user">
+						<div class="userName input_common">
+							<p>验&nbsp;&nbsp;&nbsp;证&nbsp;&nbsp;&nbsp;码</p>
+							<input type="text">
+							<span class="input_hint">请输入验证码</span>
+							<a href="#" class="verify_img"></a>
+						</div>
+						<div class="userName_hint hint_common">
+							<span>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</span>
+							<span>长度只能在4—20个字符之间</span>
+							<span>支持中文，字母，数字，“-”“_”的组合，4-20个字符</span>
+						</div>
+					</div>
+					<div class="phone_verify">
+						<div class="userName input_common">
+							<p>手机验证码</p>
+							<input type="text">
+							<span class="input_hint">请输入手机验证码</span>
+							<a href="#" class="get_verify">获取验证码</a>
+						</div>
+						<div class="userName_hint hint_common">
+							<span>格式错误，仅支持汉字、字母、数字、“-”“_”的组合</span>
+							<span>长度只能在4—20个字符之间</span>
+							<span>支持中文，字母，数字，“-”“_”的组合，4-20个字符</span>
+						</div>
+					</div>
+					<div class="protocol">
+						<input type="checkbox">
+						<span>阅读并同意</span>
+						<a href="#">《京东用户注册协议》</a>
+						<a href="#">《隐私政策》</a>
+					</div>
+					<div class="submit">
+						<input type="submit" value="立即注册">
+					</div>
+				</form>
+			</div>
+		<!-- 右边-->
+			<div class="right_box">
+				<div class="small_box">
+					<div class="right_top right_common">
+						<a href="#">
+							<img src="http://home.mengkedu.com/kugua/xinghe/images/right_top.png">
+							<span>企业用户注册</span>
+						</a>
+					</div>
+					<div class="right_bottom right_common">
+						<a href="#">
+							<img src="http://home.mengkedu.com/kugua/xinghe/images/right_bottom.png">
+							<span>INTERNATIONAL CUSTOMERS</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 尾部 -->
+	<div id="footer" class="main">
+		<div class="w1090 h104">
+			<ul>
+				<li><a href="#">关于我们</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">联系我们</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">人才招聘</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">商家入驻</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">广告服务</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">手机京东</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">友情链接</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">销售联盟</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">京东社区</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">京东公益</a></li>
+				<li class="vertical"></li>
+				<li><a href="#">English Site</a></li>
+				<li class="vertical"></li>
+			</ul>
+			<span>Copyright@2004-2016 京东JD.com版权所有</span>
+		</div>
+	</div> 
+</body>
+</html>

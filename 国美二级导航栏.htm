@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>国美二级导航栏</title>
+	<style type="text/css">
+		*{
+			padding: 0;
+			margin: 0;
+		}
+		.fl {
+			float: left;
+		}
+		.fr {
+			float: right;
+		}
+		a {
+			text-decoration: none;
+			font-size: 16px;
+		}
+
+		.nav_box {
+			margin-top: 150px;
+			height: 40px;
+		}
+		.nav_box .left_fl {
+			width: 200px;
+			height: 40px;
+			float: left;
+			position: relative;
+		}
+		.wrapbox{
+			width: 1200px;
+			margin: 0 auto;
+		}
+		.nav_box h3{
+			width: 200px;
+			height: 40px;
+			background: red;
+			line-height: 40px;
+		}
+		.nav_box h3 a {
+			padding-left: 15px;
+			color: #fff;
+		}
+		.nav_box .wrapbox .tt_fl {
+			height: 40px;
+		}
+		.nav_box .wrapbox .tt_fl  li{
+			float: left;
+			list-style: none;
+			padding: 9.5px 10px;
+		}
+		.nav_box  .wrapbox .tt_fl li a{
+			color: #000;
+		}
+		.nav_box  .wrapbox .tt_fl li a:hover{
+			color: #d7000f;
+		}
+		.nav_box .wrapbox .left_fl ul li{
+			list-style: none;
+		}
+		.left_fl .s_nav {
+			width: 200px;
+			height: 450px;
+			position: relative;
+			z-index: 2;
+		}
+		.left_fl .s_nav li{
+			width: 199px;
+			height: 28px;
+			background: #3b4146;
+			border: 1px solid #3b4146;
+			border-right: none;
+		}
+		.left_fl .s_nav li:hover{
+			background: #fff;
+		}
+		.left_fl .s_context li{
+			position: absolute;
+			width: 1000px;
+			height: 460px;
+			left: 199px;
+			top: 40px;
+			background: #fff;
+			border: 1px solid #3b4146;
+			display: none;
+		}
+		.left_fl .s_nav li a{
+			color: #fff;
+			font-size: 14px;
+			margin-left: 5px;
+		}
+		.left_fl .s_nav li a:first-child{
+			margin-left: 15px;
+		}
+		.left_fl .s_nav li:hover a{
+			color: #000;
+		}
+		.left_fl .s_nav li a:hover {
+			color: #d7000f;
+		}
+	</style>
+</head>
+<body>
+	<div class="nav_box">
+		<div class="wrapbox">
+			<div class="left_fl">
+				<h3><a href="javascript:void(0);">全部商品分类</a></h3>
+				<ul class="s_nav">
+					<li><a href="">手机</a><a href="">充值</a><a href="">相机</a><a href="">智能数码</a></li>
+					<li><a href="">电脑</a><a href="">办公配件</a></li>
+					<li><a href="">电视</a><a href="">影音</a><a href="">智能</a><a href="">国美管家</a></li>
+					<li><a href="">空调</a><a href="">冰箱</a><a href="">洗衣机</a></li>
+					<li><a href="">厨房卫浴</a><a href="">生活电器</a><a href="">净化器</a></li>
+					<li><a href="">食品酒水</a><a href="">母婴玩具</a></li>
+					<li><a href="">医疗保健</a><a href="">美妆个护</a></li>
+					<li><a href="">服饰鞋帽</a><a href="">箱包奢品</a></li>
+					<li><a href="">运动户外</a><a href="">钟表首饰</a></li>
+					<li><a href="">住宅家具</a><a href="">家装建材</a><a href="">装修</a></li>
+					<li><a href="">床品家纺</a><a href="">家居日用</a><a href="">家装城</a></li>
+					<li><a href="">汽车整车</a><a href="">汽车用品</a></li>
+					<li><a href="">黄金收藏</a><a href="">文化艺术</a></li>
+					<li><a href="">旅游</a><a href="">电影票</a><a href="">演出票</a><a href="">游戏</a></li>
+					<li><a href="">金融理财</a><a href="">基金理财</a></li>
+				</ul>
+				<ul class="s_context">
+					<li>1</li>
+					<li>2</li>
+					<li>3</li>
+					<li>4</li>
+					<li>5</li>
+					<li>6</li>
+					<li>7</li>
+					<li>8</li>
+					<li>9</li>
+					<li>10</li>
+					<li>11</li>
+					<li>12</li>
+					<li>13</li>
+					<li>14</li>
+					<li>15</li>
+				</ul>
+			</div>
+			<ul class="tt_fl">
+				<li><a href="#">真划算</a></li>
+				<li><a href="#">服装城</a></li>
+				<li><a href="#">超市</a></li>
+				<li><a href="#">电器城</a></li>
+				<li><a href="#">国美电器</a></li>
+				<li><a href="#">家居家装</a></li>
+				<li><a href="#">海外购</a></li>
+				<li><a href="#">汽车</a></li>
+				<li><a href="#">智能</a></li>
+				<li><a href="#">管家</a></li>
+				<li><a href="#">金融</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var s_n = document.getElementsByClassName('s_nav')[0].children;
+		var s_c = document.getElementsByClassName('s_context')[0].children;
+		var s_f = document.getElementsByClassName('s_nav')[0];
+
+		for(var i=0; i<s_n.length; i++){
+			s_n[i].index = i;
+			s_n[i].onmouseover = function() {
+				for(var j=0; j<s_c.length; j++){
+					s_c[j].style.display = "none";
+				} 
+				s_c[this.index].style.display = "block";
+			}
+		}
+		s_f.onmouseleave = function() {
+			for(var j=0; j<s_c.length; j++){
+				s_c[j].style.display = "none";
+			} 
+		}
+		for(var j=0; j<s_c.length; j++){
+			s_c[j].index = j;
+			s_c[j].onmouseover = function() {
+				this.style.display = "block";
+				s_n[this.index].style.background = "fff";
+				this.onmouseover = function() {
+					s_n[this.index].style.background = "#3b4146";
+				}
+			}
+		}
+	</script>
+</body>
+</html>

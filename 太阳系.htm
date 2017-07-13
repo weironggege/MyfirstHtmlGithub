@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			background: black;
+		}
+		canvas{
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="can" width="1000" height="1000">
+
+	</canvas>
+
+	<script type="text/javascript">
+		var can = document.getElementById('can');
+		var ctx = can.getContext("2d");
+		drawgd();
+
+		function drawgd() {
+			ctx.strokeStyle = "#fff";
+			for(var i=0; i<8; i++){
+				ctx.beginPath();
+				ctx.arc(500, 500, (i+1)*50, 0, Math.PI*2, false);
+				ctx.stroke();
+			}
+		}
+		function Star(x, y, radius, rote, sColor, eColor) {
+			this.x = x;
+			this.y = y;
+			this.radius = radius;
+			this.rote = rote;
+			this.sColor = sColor;
+			this.eColor = eColor;
+			this.color = 0;
+			this.time = 0;
+			this.draw = function() {
+				ctx.save();
+				ctx.translate(500, 500);
+				ctx.rotate(this.time*(360/this.rote)*Math.PI/180);
+				ctx.beginPath();
+				this.color = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius);
+				this.color.addColorStop(0, this.sColor);
+				this.color.addColorStop(1, this.eColor);
+				ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, false);
+
+				
+				ctx.fillStyle = this.color;
+				ctx.fill();
+				ctx.restore();
+				this.time += 1;
+			}
+		}
+
+	function Sun() {
+		Star.call(this, 0, 0, 30, 0, "#f00", "#ff0");
+	}
+	var sun = new Sun();
+
+	function Mercury() {
+		Star.call(this, 0, -50, 5, 87, "#A69679", "#5C3E40");
+	}
+	var mercury = new Mercury();
+
+	function Venus() {
+		Star.call(this, 0, -100, 10, 225, "#C4BBAC", "#1F1315");
+	}
+	var venus = new Venus();
+
+	function Earth() {
+		Star.call(this, 0, -150, 12, 365, "#78b1e8", "#050c12");
+	}
+	var earth = new Earth();
+
+	function Mars() {
+		Star.call(this, 0, -200, 10, 687, "#CEC986", "#76422D")
+	}
+	var mars = new Mars();
+
+	function Jupiter() {
+		Star.call(this, 0, -250, 10, 4323, "#C0A48E", "#322222");
+	}
+	var jupiter = new Jupiter();
+
+	function Saturn() {
+		Star.call(this, 0, -300, 15, 10760, "#F7F9E3", "#5C4533");
+	}
+	var saturn = new Saturn();
+
+	function Uranus() {
+		Star.call(this, 0, -350, 11, 30799, "#A7E1E5", "#19243A");
+	}
+	var uranus = new Uranus();
+	
+	function Neptune() {
+		Star.call(this, 0, -400, 6, 164*365, "#0661b2", "#1E3B73");
+	}
+	var neptune = new Neptune();
+
+	function move() {
+		ctx.clearRect(0, 0, can.width, can.height);
+		drawgd();
+		sun.draw();
+		mercury.draw();
+		venus.draw();
+		earth.draw();
+		mars.draw();
+		jupiter.draw();
+		saturn.draw();
+		uranus.draw();
+		neptune.draw();
+	}
+	setInterval(move, 10);
+	</script>
+</body>
+</html>

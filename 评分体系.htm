@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>梦珂教育评分体系</title>
+	<style type="text/css">
+		*{
+			margin:0;
+			padding: 0;
+		}
+		.wrap{
+			width: 1000px;
+			height: 35px;
+			background: #cdd;
+			line-height: 35px;
+			position: relative;
+			margin: 150px auto 0;
+		}
+		.text{
+			color: red;
+			float: left;
+		}
+		.grade {
+			float: left;
+			margin-top: 4px;
+
+		}
+		.grade li{
+			list-style: none;
+			float: left;
+			width: 25px;
+			height: 25px;
+			border: 1px solid black;
+			border-radius: 50%;
+			margin:0 3px;
+		}
+		.grade li.on{
+			background: #31c27c;
+		}
+		.tip {
+			float: left;
+			margin-left: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="wrap">
+		<span class="text">请选择对我们的服务评价：</span>
+		<ul class="grade">
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+		<p class="tip"></p>
+	</div>
+
+	<script type="text/javascript">
+		var oGrade = document.querySelector('.grade');
+		var oGradeLi = document.querySelectorAll(".grade li");
+		var oTip = document.querySelector(".tip");
+		
+		var oTipText = [
+			"提示：亲，您的满意度是我们追求的目标",
+			"一星好评",
+			"二星好评",
+			"三星好评",
+			"四星好评",
+			"五星好评",
+		];
+		var score = 0;
+		oTip.innerHTML = oTipText[score];
+		console.log(oTipText);
+
+		for(var i=0; i<oGradeLi.length; i++){
+			oGradeLi[i].kg = i;
+			oGradeLi[i].onclick = function() {
+				score = this.kg + 1;
+			};
+			oGradeLi[i].onmouseover = function() {
+				change(this.kg);
+			}
+		}
+		oGrade.onmouseleave = function(){
+			change(score-1);
+		}
+		function change(sum) {
+			for(var i=0; i<oGradeLi.length; i++){
+				if(i>sum){
+					oGradeLi[i].className = "";
+				}else{
+					oGradeLi[i].className = "on";
+				}
+
+				oTip.innerHTML = oTipText[sum+1];
+			};
+		}; 
+	</script>
+</body>
+</html>
